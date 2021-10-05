@@ -6,8 +6,25 @@ This is my implementetion repo for the Capstone project in the [Udacity C++ Nano
 
 The Capstone Project gives us a chance to integrate what you've learned throughout this program. 
 
+## Rules and name story
+
 At the begining I made a mistake in the word "snake" and wrote "snaek". But after that I think "Hm, Why not?"
 And remane that to the "sneak" wich means "to go somewhere secretly and quietly". This have something with animals hunt process.
+
+At first, I added the levels feature. For starter vertion, I constract next levels model:
+
+1. Each level will have maximum "snake" length - "scope" - 5 times n, where n is the level number
+   1 level  -  5
+   2 level  - 10
+   3 level  - 15
+   
+2. Each new level will start from "0"+n scope
+
+May be in future I will make more complex level idea
+
+Than I changed the speed increasing. Sincerelly, its a hight speed for scope 15, for example. And I think little bit more and start to change speed only for new level. For me, its good idea))
+
+After that I saw part of code where we place food, particulary the coordinat check! It potential bug. We place the food and only after that we grow the body. But check contains only body, not a new + 1 squear. Or if we imagine that in our model during food place we go ahead, than we need to avoid the next squaer for "automatice eating" food. Thats why I made a decision to expand the prohibiden area for new food.
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
