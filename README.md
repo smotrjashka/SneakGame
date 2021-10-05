@@ -24,7 +24,7 @@ May be in future I will make more complex level idea
 
 Than I changed the speed increasing. Sincerelly, its a hight speed for scope 15, for example. And I think little bit more and start to change speed only for new level. For me, its good idea))
 
-After that I saw part of code where we place food, particulary the coordinat check! It potential bug. We place the food and only after that we grow the body. But check contains only body, not a new + 1 squear. Or if we imagine that in our model during food place we go ahead, than we need to avoid the next squaer for "automatice eating" food. Thats why I made a decision to expand the proibiden area for new food.
+After that I saw part of code where we place food, particulary the coordinat check! It potential bug. We place the food and only after that we grow the body. But check contains only body, not a new + 1 squear. Or if we imagine that in our model during food place we go ahead, than we need to avoid the next squaer for "automatice eating" food. Thats why I made a decision to expand the prohibiden area for new food.
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
