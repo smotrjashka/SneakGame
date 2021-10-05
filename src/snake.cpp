@@ -70,8 +70,9 @@ bool Snake::SnakeCell(int x, int y) {
   if (x == static_cast<int>(head_x) && y == static_cast<int>(head_y)) {
     return true;
   }
+  /// expanding prohibited area for new food
   for (auto const &item : body) {
-    if (x == item.x && y == item.y) {
+    if (std::abs(x - item.x) < 2 && std::abs(y - item.y) < 2) {
       return true;
     }
   }

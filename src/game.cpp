@@ -36,7 +36,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
 
     // After every second, update the window title.
     if (frame_end - title_timestamp >= 1000) {
-      renderer.UpdateWindowTitle(score, frame_count);
+      renderer.UpdateWindowTitle(score, frame_count, level);
       frame_count = 0;
       title_timestamp = frame_end;
     }
@@ -76,10 +76,17 @@ void Game::Update() {
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
+    //I added second condition check just in case that some other changes in future will drastically
+    //impact on score number and for avoid future bugs. And, in general, I prefer that programming model when we
+    // didnt trust code from another class
+      if ((score % 5 == 0) && (score != 0)){
+          score = score/5;
+          level++;
+          snake.speed += 0.02;
+      }
     PlaceFood();
     // Grow snake and increase speed.
     snake.GrowBody();
-    snake.speed += 0.02;
   }
 }
 
