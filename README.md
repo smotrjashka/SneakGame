@@ -18,7 +18,7 @@ At first, I added the levels feature. For starter vertion, I constract next leve
    2 level  - 10
    3 level  - 15
    
-2. Each new level will start from "0" scope
+2. Each new level will start from "0"+n scope
 
 May be in future I will make more complex level idea
 
