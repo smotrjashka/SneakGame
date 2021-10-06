@@ -57,6 +57,10 @@ Hear I explane which concepts I covered by my code changes and in which way.
 * A mutex or lock is used in the project.
    
   For login form, I used the mutex for wait for user write a username before start the game.
+  
+* Class constructors utilize member initialization lists.
+
+  User for Login class and som other OOP tecniques.
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
