@@ -4,9 +4,6 @@
 #include "renderer.h"
 #include <fstream>
 
-const std::string MAIN_FILE = "Sessions.txt";
-const std::string TEMP_FILE = "temp.txt";
-
 std::string save_data_to_file(Game game, std::fstream data_to_write){
 
     data_to_write << "User:" << game.GetUserName() << " " << "Level:" << game.GetLevel() << " ";
@@ -21,6 +18,8 @@ int main() {
   constexpr std::size_t kScreenHeight{640};
   constexpr std::size_t kGridWidth{32};
   constexpr std::size_t kGridHeight{32};
+    const std::string MAIN_FILE = "Sessions.txt";
+    const std::string TEMP_FILE = "temp.txt";
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
