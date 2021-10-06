@@ -6,7 +6,7 @@
 #include <fstream>
 
 std::string save_data_to_file(Game game, std::fstream data_to_write){
-    /// places between words needed for simple read procedure
+    /// places between words needed for simplify read procedure
     data_to_write << "User: " << game.GetUserName() << " " << "Level: " << game.GetLevel() << " ";
     data_to_write << "Score: " << game.GetScore() << " " << "Size: " << game.GetSize() << " ";
     data_to_write << "Lifes: " << game.GetLifes() << "\n";
@@ -19,16 +19,52 @@ int main() {
   constexpr std::size_t kScreenHeight{640};
   constexpr std::size_t kGridWidth{32};
   constexpr std::size_t kGridHeight{32};
+
     const std::string MAIN_FILE = "Sessions.txt";
     const std::string TEMP_FILE = "temp.txt";
+
     std::string user_name = "";
+
     Login login(kScreenWidth, kScreenHeight, &user_name);
+
+
+    std::string word, levelStr, scoreStr, sizeStr, lifeStr;
+    bool isRestored = false;
+    if (user_name != "" || user_name != "unauthorized"){
+
+        std::ofstream read_file_stream(MAIN_FILE);
+        if (read_file_stream.is_open()){
+            std::cout << "file for search starter value is open" << std::endl;
+            std::string li;
+            while (std::getline(data_to_write, li)){
+                std::cout << "substr: " << li.substr(0, user_name_length) << std::endl;
+                if (li.substr(0, user_name_length) == "User: "+user_name)
+                {
+                    isRestored = true;
+                    std::istringstream lstream(li);
+                    lstream >> word >> word >> word >> levelStr >> word >> scoreStr >> word >> sizeStr >> word >> lifeStr;
+                }
+
+            }
+            read_file_stream.close();
+        }
+
+    }
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
-  Game game(kGridWidth, kGridHeight);
+  Game game;
+    if (isRestored){
+        std::cout << "is restored" << std::endl;
+        int levelInt, scoreInt, lifeInt;
+        levelInt = std::stoi(levelStr);
+        scoreInt = std::stoi(scoreStr);
+        lifeInt = std::stoi();
+        game = new Game(kGridWidth, kGridHeight, levelInt, scoreInt, lifeInt);
+    } else {
+       game = new Game(kGridWidth, kGridHeight);
+    }
   game.Run(controller, renderer, kMsPerFrame);
-  mtx.unlock();
   //saving data for file
   std::fstream data_to_write;
   data_to_write.open(MAIN_FILE, std::ios::out | std::ios::in);

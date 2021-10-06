@@ -10,6 +10,15 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
   PlaceFood();
 }
 
+Game:Game(std::size_t grid_width, std::size_t grid_height, int level, int score, int life)
+    : snake(grid_width, grid_height), engine(dev()),
+        random_w(0, static_cast<int>(grid_width - 1)),
+        random_h(0, static_cast<int>(grid_height - 1)),
+        level(level), score(score), life(life){
+    PlaceFood();
+};
+
+
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
   Uint32 title_timestamp = SDL_GetTicks();
