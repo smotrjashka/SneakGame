@@ -32,7 +32,7 @@ And I added the lifes. The user will have 3 lifes. Each new level lifes will be 
 
 Hear I explane which concepts I covered by my code changes and in which way.
 
-* The project uses Object Oriented Programming techniques: he project code is organized into classes with class attributes to hold the data, and class methods to perform tasks.
+* The project uses Object Oriented Programming techniques: the project code is organized into classes with class attributes to hold the data, and class methods to perform tasks.
   
   I created class Obstacle for all obstacles and their functinality.
   
@@ -45,6 +45,10 @@ Hear I explane which concepts I covered by my code changes and in which way.
   In the begining of the game, we ask user to wrote the nikename. Now I use this for have data from previously described file. But maybe in future I will safe best resalt and     make some rating or something like.
   
   Normally, in real life for saving data I use (like everyone) DB, but for porpouse of this course I make choise to simplify the idea of data saving to match some concepts.
+  
+* The project code is clearly organized into functions.
+  
+  I added function save_data_to_file to main.cpp for prevent repetitive code. We use in case if found the data for this specifice user and if not found them we write new data     using this function.
   
 * 
 
