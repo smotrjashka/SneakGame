@@ -2,7 +2,9 @@
 #include "controller.h"
 #include "game.h"
 #include "renderer.h"
+#include "login.h"
 #include <fstream>
+#include <mutex>
 
 std::string save_data_to_file(Game game, std::fstream data_to_write){
 
@@ -20,11 +22,14 @@ int main() {
   constexpr std::size_t kGridHeight{32};
     const std::string MAIN_FILE = "Sessions.txt";
     const std::string TEMP_FILE = "temp.txt";
+    std::string user_name = "";
+    Login login(kScreenWidth, kScreenHeight, &user_name);
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
   Game game(kGridWidth, kGridHeight);
   game.Run(controller, renderer, kMsPerFrame);
+  mtx.unlock();
   //saving data for file
   std::fstream data_to_write;
   data_to_write.open(MAIN_FILE, std::ios::out | std::ios::in);
@@ -34,7 +39,7 @@ int main() {
         std::string line;
         std::fstream temp_file;
         temp_file.open(TEMP_FILE, std::ios::out | std::ios::in);
-        std::string user_name = game.GetUserName();
+     //   std::string user_name = game.GetUserName();
         int user_name_length = 5 + user_name.length();
         bool isPresent = false;
         while (std::getline(data_to_write, line)){
