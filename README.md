@@ -54,6 +54,10 @@ Hear I explane which concepts I covered by my code changes and in which way.
 
   Place a Obstacle depend on specifice obstacle type requarement and complexity level. See Obstacle class comment.
 
+* A mutex or lock is used in the project.
+   
+  For login form, I used the mutex for wait for user write a username before start the game.
+
 ## Dependencies for Running Locally
 * cmake >= 3.7
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
