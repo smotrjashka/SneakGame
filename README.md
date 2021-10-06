@@ -53,10 +53,6 @@ Hear I explane which concepts I covered by my code changes and in which way.
 * Overloaded functions allow the same function to operate on different parameters: One function is overloaded with different signatures for the same function name.
 
   Place a Obstacle depend on specifice obstacle type requarement and complexity level. See Obstacle class comment.
-
-* A mutex or lock is used in the project.
-   
-  For login form, I used the mutex for wait for user write a username before start the game.
   
 * Class constructors utilize member initialization lists.
 
