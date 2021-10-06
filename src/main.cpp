@@ -4,13 +4,12 @@
 #include "renderer.h"
 #include "login.h"
 #include <fstream>
-#include <mutex>
 
 std::string save_data_to_file(Game game, std::fstream data_to_write){
-
-    data_to_write << "User:" << game.GetUserName() << " " << "Level:" << game.GetLevel() << " ";
-    data_to_write << "Score:" << game.GetScore() << " " << "Size:" << game.GetSize() << " ";
-    data_to_write << "Lifes:" << game.GetLifes() << "\n";
+    /// places between words needed for simple read procedure
+    data_to_write << "User: " << game.GetUserName() << " " << "Level: " << game.GetLevel() << " ";
+    data_to_write << "Score: " << game.GetScore() << " " << "Size: " << game.GetSize() << " ";
+    data_to_write << "Lifes: " << game.GetLifes() << "\n";
 }
 
 int main() {
@@ -40,11 +39,11 @@ int main() {
         std::fstream temp_file;
         temp_file.open(TEMP_FILE, std::ios::out | std::ios::in);
      //   std::string user_name = game.GetUserName();
-        int user_name_length = 5 + user_name.length();
+        int user_name_length = 6 + user_name.length();
         bool isPresent = false;
         while (std::getline(data_to_write, line)){
             std::cout << "substr: " << line.substr(0, user_name_length) << std::endl;
-            if (line.substr(0, user_name_length) == "User:"+user_name){
+            if (line.substr(0, user_name_length) == "User: "+user_name){
                 save_data_to_file(game, temp_file);
                 isPresent = true;
             } else {
