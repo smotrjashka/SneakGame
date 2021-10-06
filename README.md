@@ -6,7 +6,7 @@ This is my implementetion repo for the Capstone project in the [Udacity C++ Nano
 
 The Capstone Project gives us a chance to integrate what you've learned throughout this program. 
 
-## Rules and name story
+## Rules and name/game story
 
 At the begining I made a mistake in the word "snake" and wrote "snaek". But after that I think "Hm, Why not?"
 And remane that to the "sneak" wich means "to go somewhere secretly and quietly". This have something with animals hunt process.
@@ -25,6 +25,28 @@ May be in future I will make more complex level idea
 Than I changed the speed increasing. Sincerelly, its a hight speed for scope 15, for example. And I think little bit more and start to change speed only for new level. For me, its good idea))
 
 After that I saw part of code where we place food, particulary the coordinat check! It potential bug. We place the food and only after that we grow the body. But check contains only body, not a new + 1 squear. Or if we imagine that in our model during food place we go ahead, than we need to avoid the next squaer for "automatice eating" food. Thats why I made a decision to expand the prohibiden area for new food.
+
+And I added the lifes. The user will have 3 lifes. Each new level lifes will be "zeroed" to 3. Game is over when no lifes left. If we will restore the game, we restore lifes count too. Every colision take 1 life. May be in future it will be more complex concept of lifes.
+
+## Concepts covered
+
+Hear I explane which concepts I covered by my code changes and in which way.
+
+* The project uses Object Oriented Programming techniques: he project code is organized into classes with class attributes to hold the data, and class methods to perform tasks.
+  
+  I created class Obstacle for all obstacles and their functinality.
+  
+* The project reads data from a file and process the data, or the program writes data to a file.
+
+  After stop the game, if lifes left, we will safe data to the file, and for next start IF user prefer to continue game, we will restor info like level, score and lifes.
+
+* The project accepts user input and processes the input.
+   
+  In the begining of the game, we ask user to wrote the nikename. Now I use this for have data from previously described file. But maybe in future I will safe best resalt and     make some rating or something like.
+  
+  Normally, in real life for saving data I use (like everyone) DB, but for porpouse of this course I make choise to simplify the idea of data saving to match some concepts.
+  
+* 
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
