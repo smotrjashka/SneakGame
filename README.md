@@ -50,7 +50,9 @@ Hear I explane which concepts I covered by my code changes and in which way.
   
   I added function save_data_to_file to main.cpp for prevent repetitive code. We use in case if found the data for this specifice user and if not found them we write new data     using this function.
   
-* 
+* Overloaded functions allow the same function to operate on different parameters: One function is overloaded with different signatures for the same function name.
+
+  Place a Obstacle depend on specifice obstacle type requarement complexity level. See Obstacle class comment.
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
