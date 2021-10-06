@@ -4,12 +4,14 @@
 #include "renderer.h"
 #include "login.h"
 #include <fstream>
+#include <sstream>
+#include <stdio.h>
 
-std::string save_data_to_file(Game game, std::string user, std::fstream data_to_write){
+std::string save_data_to_file(Game *gamePtr, std::string user, std::fstream& data_to_write){
     /// places between words needed for simplify read procedure
-    data_to_write << "User: " << user << " " << "Level: " << game.GetLevel() << " ";
-    data_to_write << "Score: " << game.GetScore() << " " << "Size: " << game.GetSize() << " ";
-    data_to_write << "Lifes: " << game.GetLifes() << "\n";
+    data_to_write << "User: " << user << " " << "Level: " << gamePtr->GetLevel() << " ";
+    data_to_write << "Score: " << gamePtr->GetScore() << " " << "Size: " << gamePtr->GetSize() << " ";
+    data_to_write << "Lifes: " << gamePtr->GetLifes() << "\n";
 }
 
 int main() {
@@ -25,7 +27,7 @@ int main() {
 
     std::string user_name = "";
 
-    Login login(&user_name);
+    Login login(user_name);
 
 
     std::string word, levelStr, scoreStr, sizeStr, lifeStr;
@@ -54,17 +56,16 @@ int main() {
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
-  Game game;
+
+        int levelInt, scoreInt, lifeInt;
     if (isRestored){
         std::cout << "is restored" << std::endl;
-        int levelInt, scoreInt, lifeInt;
         levelInt = std::stoi(levelStr);
         scoreInt = std::stoi(scoreStr);
         lifeInt = std::stoi(lifeStr);
-        game = new Game(kGridWidth, kGridHeight, levelInt, scoreInt, lifeInt);
-    } else {
-       game = new Game(kGridWidth, kGridHeight);
-    }
+     } 
+       Game game(kGridWidth, kGridHeight, levelInt, scoreInt, lifeInt);
+   
   game.Run(controller, renderer, kMsPerFrame);
   //saving data for file
   std::fstream data_to_write;
@@ -77,23 +78,24 @@ int main() {
         temp_file.open(TEMP_FILE, std::ios::out | std::ios::in);
      //   std::string user_name = game.GetUserName();
         bool isPresent = false;
+        Game* ptrGame = &game;
         while (std::getline(data_to_write, line)){
             std::cout << "substr: " << line.substr(0, user_name_length) << std::endl;
             if (line.substr(0, user_name_length) == "User: "+user_name){
-                save_data_to_file(game, user_name, temp_file);
+                save_data_to_file(ptrGame, user_name, temp_file);
                 isPresent = true;
             } else {
                 temp_file << line << "\n";
             }
         }
         if (!isPresent){
-            save_data_to_file(game, user_name, temp_file);
+            save_data_to_file(ptrGame, user_name, temp_file);
         }
 
         data_to_write.close();
         temp_file.close();
-        remove(MAIN_FILE);
-        rename(TEMP_FILE, MAIN_FILE);
+        remove(MAIN_FILE.c_str());
+        rename(TEMP_FILE.c_str(), MAIN_FILE.c_str());
 
     }
 

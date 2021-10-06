@@ -10,7 +10,6 @@
 
 class Game {
  public:
-  Game();
   Game(std::size_t grid_width, std::size_t grid_height);
   Game(std::size_t grid_width, std::size_t grid_height, int level, int score, int life);
   void Run(Controller const &controller, Renderer &renderer,
@@ -19,6 +18,9 @@ class Game {
   int GetSize() const;
   int GetLevel() const;
   int GetLifes() const;
+  void SetScore(int score);
+  void SetLevel(int level);
+  void SetLifes(int lifes);
   std::string GetUserName() const;
 
  private:
