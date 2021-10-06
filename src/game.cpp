@@ -83,6 +83,7 @@ void Game::Update() {
           score = score/5;
           level++;
           snake.speed += 0.02;
+          life = 3;
       }
     PlaceFood();
     // Grow snake and increase speed.
@@ -92,4 +93,7 @@ void Game::Update() {
 
 int Game::GetScore() const { return score; }
 int Game::GetSize() const { return snake.size; }
+// I added level and life concepts, and user pls read the README for more info
 int Game::GetLevel() const {return level;}
+int Game::GetLifes() const {return life;}
+std::string Game::GetUserName() const {return user_name;}

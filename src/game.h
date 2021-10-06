@@ -6,6 +6,7 @@
 #include "controller.h"
 #include "renderer.h"
 #include "snake.h"
+#include <string>
 
 class Game {
  public:
@@ -15,6 +16,8 @@ class Game {
   int GetScore() const;
   int GetSize() const;
   int GetLevel() const;
+  int GetLifes() const;
+  string GetUserName() const;
 
  private:
   Snake snake;
@@ -28,6 +31,8 @@ class Game {
   int score{0};
   int level{1};
   int score_for_next_level{5};
+  int life{3};
+  std::string user_name{"unauthorized"};
 
   void PlaceFood();
   void Update();
