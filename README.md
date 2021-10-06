@@ -52,8 +52,8 @@ Hear I explane which concepts I covered by my code changes and in which way.
   
 * Overloaded functions allow the same function to operate on different parameters: One function is overloaded with different signatures for the same function name.
 
-  Place a Obstacle depend on specifice obstacle type requarement and complexity level. See Obstacle class comment.
-  
+ HandleInput function ovwrload for non-value too. I use this for login age user name input.
+ 
 * Class constructors utilize member initialization lists.
 
   User for Login class and som other OOP tecniques.
