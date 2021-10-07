@@ -95,9 +95,9 @@ void Game::Update() {
     //I added second condition check just in case that some other changes in future will drastically
     //impact on score number and for avoid future bugs. And, in general, I prefer that programming model when we
     // didnt trust code from another class
-      if ((score % 5 == 0) && (score != 0)){
+      if ((score % (5*level) == 0) && (score != 0)){
           score = score/5;
-          std::cout << "new score after update " << score << sdl::endl;
+          std::cout << "new score after update " << score << std::endl;
           level++;
           snake.speed += 0.02;
           life = 3;
