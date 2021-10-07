@@ -16,6 +16,7 @@ class Snake {
 
   void GrowBody();
   void EraseBody();
+  void EraseBody(int size);
   bool SnakeCell(int x, int y);
 
   Direction direction = Direction::kUp;

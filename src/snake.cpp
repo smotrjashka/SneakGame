@@ -70,9 +70,8 @@ void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) 
           body.erase(body.begin());
       } else {
           erase_body = false;
-          size = 1;
           //left only head
-          while (body.size > 1){
+          while (body.size() > size){
               body.erase(body.begin());
           }
       }
@@ -90,7 +89,18 @@ void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) 
 }
 
 void Snake::GrowBody() { growing = true; }
-void Snake::EraseBody() { erase_body = true; }
+void Snake::EraseBody() {
+    erase_body = true;
+    size = 1;
+}
+void Snake::EraseBody(int size) {
+    erase_body = true;
+    if (size > 0) {
+        this->size = size;
+    } else {
+        this->size = 1;
+    }
+}
 
 // Inefficient method to check if cell is occupied by snake.
 bool Snake::SnakeCell(int x, int y) {
