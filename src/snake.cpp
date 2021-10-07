@@ -17,8 +17,7 @@ Snake::Snake(int grid_width, int grid_height, int score, int level): grid_width(
         while (score > 0){
             SDL_Point new_body_cell{
                     static_cast<int>(head_x),
-                    static_cast<int>(
-                            head_y+score)};
+                    static_cast<int>(head_y+score)};
             body.push_back(new_body_cell);
             score--;
         }

@@ -6,6 +6,7 @@
 #include "controller.h"
 #include "renderer.h"
 #include "snake.h"
+#include "obstacle.h"
 #include <string>
 
 class Game {
@@ -26,6 +27,7 @@ class Game {
  private:
   Snake snake;
   SDL_Point food;
+  Obstacle obstacle;
 
   std::random_device dev;
   std::mt19937 engine;
@@ -39,6 +41,7 @@ class Game {
   std::string user_name{"unauthorized"};
 
   void PlaceFood();
+  void PlaceObstacle();
   void Update();
 };
 

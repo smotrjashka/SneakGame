@@ -81,6 +81,21 @@ void Game::PlaceFood() {
   }
 }
 
+void Game::PlaceObstacle() {
+    int x, y;
+    while (true){
+        x = random_w(engine);
+        y = random_h(engine);
+
+        if (!snake.SnakeCell(x, y) && food.x != x && food.y != y) {
+            Obstacle::Obstacle(x, y);
+            return;
+        }
+
+    }
+
+}
+
 void Game::Update() {
   if (!snake.alive) return;
 
@@ -108,6 +123,20 @@ void Game::Update() {
           PlaceFood();
           // Grow snake and increase speed.
           snake.GrowBody();
+      }
+  } else {
+      //checking for obstacle if it is not food
+      //TODO vector check
+      ///for now I only have a false food generator
+      if (obstacle.obstacle_points[0].x == new_x && obstacle.obstacle_points[0].y == new_y){
+          level--;
+          /// its lifes == 0, but just in case
+          if (life < 1){
+              snake.alive = false;
+              life = 3;
+              score = 0;
+              level = 1;
+          }
       }
   }
 }
