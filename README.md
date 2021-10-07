@@ -27,6 +27,7 @@ Than I changed the speed increasing. Sincerelly, its a hight speed for scope 15,
 After that I saw part of code where we place food, particulary the coordinat check! It potential bug. We place the food and only after that we grow the body. But check contains only body, not a new + 1 squear. Or if we imagine that in our model during food place we go ahead, than we need to avoid the next squaer for "automatice eating" food. Thats why I made a decision to expand the prohibiden area for new food.
 
 And I added the lifes. The user will have 3 lifes. Each new level lifes will be "zeroed" to 3. Game is over when no lifes left. If we will restore the game, we restore lifes count too. Every colision take 1 life. May be in future it will be more complex concept of lifes.
+Pay attention, that every colision with obstacle take 1 life, but in snake "eat" herself, she die emidiatlly!!)) 
 
 ## Concepts covered
 
@@ -48,15 +49,30 @@ Hear I explane which concepts I covered by my code changes and in which way.
   
 * The project code is clearly organized into functions.
   
-  I added function save_data_to_file to main.cpp for prevent repetitive code. We use in case if found the data for this specifice user and if not found them we write new data     using this function.
+  I added function save_data_to_file to main.cpp for prevent repetitive code. We use in case if found the data for this specifice user and if not found them we write new data     using this function. And also other function in game class etc.
   
 * Overloaded functions allow the same function to operate on different parameters: One function is overloaded with different signatures for the same function name.
 
- HandleInput function ovwrload for non-value too. I use this for login age user name input.
+ I created some overloaded function for different parameters, you can find them)
  
 * Class constructors utilize member initialization lists.
 
-  User for Login class and som other OOP tecniques.
+  User when its possible, in most cases I need to make some check regardless data from file, for example.
+  
+* Classes use appropriate access specifiers for class members.
+
+  Some added by me variables are prived and had getters and setters and some I made public.
+  
+* Classes encapsulate behavior.
+
+  Snake, Obstacle, Game have this.
+  
+* The project makes use of references in function declarations.
+
+  I`m not sure about at list two, but 1 I have for certain... But probably two... Lets see)
+  
+
+I thinck, thats enaught))
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
