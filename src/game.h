@@ -38,12 +38,15 @@ class Game {
   int level{1};
   int score_for_next_level{5};
   int life{3};
+  int grid_w;
+  int grid_h;
   std::string user_name{"unauthorized"};
 
   void PlaceFood();
   void PlaceObstacle();
   void RemovePrevObstacle();
   void Update();
+  Obstacle::ObstacleType DefineObstacleType(int vector_size);
 };
 
 #endif

@@ -1,9 +1,10 @@
 #include "game.h"
 #include <iostream>
 #include "SDL.h"
+#include <algorithm>
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
-    : snake(grid_width, grid_height),
+    : snake(grid_width, grid_height), grid_w(static_cast<int>(grid_width)), grid_h(static_cast<int>(grid_height)),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1)) {
@@ -12,7 +13,7 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
 
 Game::Game(std::size_t grid_width, std::size_t grid_height, int level, int score, int life)
     : snake(grid_width, grid_height, score, level),
-        engine(dev()),
+        engine(dev()), grid_w(static_cast<int>(grid_width)), grid_h(static_cast<int>(grid_height)),
         random_w(0, static_cast<int>(grid_width - 1)),
         random_h(0, static_cast<int>(grid_height - 1))
         {
@@ -89,11 +90,50 @@ void Game::PlaceObstacle() {
         if (!snake.SnakeCell(x, y) && food.x != x && food.y != y) {
             SDL_Point false_food_point{static_cast<int>(x), static_cast<int>(y)};
             obstacle.obstacle_points.push_back(false_food_point);
+            if (level > 1){
+                if (level != 4){
+                    int finish = std::max(level%grid_w, 2);
+                    for (int i = 0; i < level; ++i) {
+                        if (x++ < grid_w){
+                            if (!snake.SnakeCell(x, y) && food.x != x && food.y != y) {
+                                SDL_Point o_point{static_cast<int>(x), static_cast<int>(y)};
+                                obstacle.obstacle_points.push_back(o_point);
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+                } else {
+                    ///we will try make Rock obstacle, and for this we need to check rest of 3 poinst before post them
+                    if (x+1<grid_w && y+1 < grid_h && !snake.SnakeCell(x+1, y) && !snake.SnakeCell(x+1, y+1) && !snake.SnakeCell(x, y+1)
+                    && food.x != x && food.x != x+1 && food.y != y+1 && food.y != y){
+                        SDL_Point rock_point_x1_y1{static_cast<int>(x+1), static_cast<int>(y+1)};
+                        obstacle.obstacle_points.push_back(rock_point_x1_y1);
+                        SDL_Point rock_point_x1{static_cast<int>(x+1), static_cast<int>(y)};
+                        obstacle.obstacle_points.push_back(rock_point_x1);
+                        SDL_Point rock_point_y1{static_cast<int>(x), static_cast<int>(y+1)};
+                        obstacle.obstacle_points.push_back(rock_point_y1);
+                    }
+                }
+            }
+            obstacle.obstacle_type = DefineObstacleType(obstacle.obstacle_points.size());
             return;
         }
 
     }
 
+}
+
+Obstacle::ObstacleType DefineObstacleType(int vector_size){
+    if (vector_size == 1){
+        return Obstacle::ObstacleType::FalseFood;
+    } else if (vector_size < 4) {
+        return Obstacle::ObstacleType::Barrier;
+    } else if (vector_size == 4) {
+        return Obstacle::ObstacleType::Rock;
+    } else {
+        return Obstacle::ObstacleType::Wall;
+    }
 }
 
 void Game::RemovePrevObstacle(){
@@ -131,21 +171,23 @@ void Game::Update() {
       }
   } else {
       //checking for obstacle if it is not food
-      //TODO vector check
-      ///for now I only have a false food generator
       std::cout << obstacle.obstacle_points.size() << std::endl;
-      if (obstacle.obstacle_points.size()>0
-       && obstacle.obstacle_points[0].x == new_x && obstacle.obstacle_points[0].y == new_y){
-          RemovePrevObstacle();
-          life--;
-          /// its lifes == 0, but just in case
-          if (life < 1){
-              snake.alive = false;
-              life = 3;
-              score = 0;
-              level = 1;
+      if (obstacle.obstacle_points.size()>0){
+          for (int i = 0; i < obstacle.obstacle_points.size(); ++i) {
+              if (obstacle.obstacle_points[i].x == new_x && obstacle.obstacle_points[i].y == new_y){
+                  RemovePrevObstacle();
+                  life--;
+                  /// its lifes == 0, but just in case
+                  if (life < 1){
+                      snake.alive = false;
+                      life = 3;
+                      score = 0;
+                      level = 1;
+                  }
+                  PlaceObstacle();
+                  break;
+              }
           }
-      PlaceObstacle();
       }
   }
 }
