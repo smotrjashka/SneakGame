@@ -92,8 +92,8 @@ void Game::PlaceObstacle() {
             obstacle.obstacle_points.push_back(false_food_point);
             if (level > 1){
                 if (level != 4){
-                    int finish = std::max(level%grid_w, 2);
-                    for (int i = 0; i < level; ++i) {
+                    int finish = std::max((level-1)%grid_w, 2);
+                    for (int i = 0; i < level-1; ++i) {
                         if (x++ < grid_w){
                             if (!snake.SnakeCell(x, y) && food.x != x && food.y != y) {
                                 SDL_Point o_point{static_cast<int>(x), static_cast<int>(y)};
@@ -124,7 +124,7 @@ void Game::PlaceObstacle() {
 
 }
 
-Obstacle::ObstacleType DefineObstacleType(int vector_size){
+Obstacle::ObstacleType Game::DefineObstacleType(int vector_size){
     if (vector_size == 1){
         return Obstacle::ObstacleType::FalseFood;
     } else if (vector_size < 4) {
@@ -141,7 +141,14 @@ void Game::RemovePrevObstacle(){
 }
 
 void Game::Update() {
-  if (!snake.alive) return;
+  if (!snake.alive){
+     if (life>0)
+     {
+       life = 0;
+     }
+     
+     return;
+     }
 
   snake.Update();
   int new_x = static_cast<int>(snake.head_x);
