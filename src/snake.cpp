@@ -14,6 +14,14 @@ Snake::Snake(int grid_width, int grid_height, int score, int level): grid_width(
                                                           head_y(grid_height / 2) {
     if (score > 0) {
         this->size = score + 1;
+        while (score > 0){
+            SDL_Point new_body_cell{
+                    static_cast<int>(head_x),
+                    static_cast<int>(
+                            head_y-score)};
+            body[score-1] = new_body_cell;
+            score--;
+        }
     }
     if (level > 1)
     this->speed = 0.04f + 0.02*(level - 1);
