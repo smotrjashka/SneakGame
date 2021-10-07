@@ -37,11 +37,13 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   renderer.UpdateWindowTitle(score, 0, level, life);
   while (running) {
     frame_start = SDL_GetTicks();
-
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake);
+    std::cout << "update" << std::endl;
     Update();
+    std::cout << "render" << std::endl;
     renderer.Render(snake, food, obstacle);
+    std::cout << "after" << std::endl;
 
     frame_end = SDL_GetTicks();
 
@@ -98,13 +100,15 @@ void Game::PlaceObstacle() {
 }
 
 void Game::Update() {
+  std::cout << "updtae start" << std::endl;
   if (!snake.alive) return;
+  std::cout << "snake alive" << std::endl;
 
   snake.Update();
-
+std::cout << "snake updated" << std::endl;
   int new_x = static_cast<int>(snake.head_x);
   int new_y = static_cast<int>(snake.head_y);
-
+std::cout << "check if food" << std::endl;
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
@@ -126,10 +130,13 @@ void Game::Update() {
           snake.GrowBody();
       }
   } else {
+    std::cout << "else" << std::endl;
       //checking for obstacle if it is not food
       //TODO vector check
       ///for now I only have a false food generator
-      if (obstacle.obstacle_points[0].x == new_x && obstacle.obstacle_points[0].y == new_y){
+      std::cout << obstacle.obstacle_points.size() << std::endl;
+      if (obstacle.obstacle_points.size()>0
+       && obstacle.obstacle_points[0].x == new_x && obstacle.obstacle_points[0].y == new_y){
           level--;
           /// its lifes == 0, but just in case
           if (life < 1){
@@ -139,6 +146,7 @@ void Game::Update() {
               level = 1;
           }
       }
+      std::cout << "else finished" << std::endl;
   }
 }
 

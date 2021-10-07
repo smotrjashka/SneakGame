@@ -39,14 +39,20 @@ Renderer::~Renderer() {
 }
 
 void Renderer::Render(Snake const snake, SDL_Point const &food, Obstacle const obstacle) {
+  std::cout << "start render" << std::endl;
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
+
+  SDL_Rect obst_block;
+  obst_block.w = screen_width / grid_width;
+  obst_block.h = screen_height / grid_height;
 
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
+std::cout << "betwean" << std::endl;
   // Render food
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
   block.x = food.x * block.w;
@@ -60,11 +66,10 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, Obstacle const o
 
     SDL_SetRenderDrawColor(sdl_renderer, rgb[0], rgb[1], rgb[2], 255);
     for (SDL_Point const &point : obstacle.obstacle_points) {
-        block.x = point.x * block.w;
-        block.y = point.y * block.h;
-        SDL_RenderFillRect(sdl_renderer, &block);
+        obst_block.x = point.x * block.w;
+        obst_block.y = point.y * block.h;
+        SDL_RenderFillRect(sdl_renderer, &obst_block);
     }
-    SDL_RenderFillRect(sdl_renderer, &block);
 
     std::cout << "after render obstacle" << std::endl;
 
