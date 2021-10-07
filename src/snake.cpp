@@ -19,7 +19,7 @@ Snake::Snake(int grid_width, int grid_height, int score, int level): grid_width(
                     static_cast<int>(head_x),
                     static_cast<int>(
                             head_y+score)};
-            body[score-1] = new_body_cell;
+            body.push_back(new_body_cell);
             score--;
         }
     }
