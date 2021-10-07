@@ -7,7 +7,7 @@
 #include <sstream>
 #include <stdio.h>
 
-std::string save_data_to_file(Game *gamePtr, std::string user, std::fstream& data_to_write){
+std::string save_data_to_file(Game *gamePtr, std::string user, std::ofstream& data_to_write){
     /// places between words needed for simplify read procedure
     data_to_write << "User: " << user << " " << "Level: " << gamePtr->GetLevel() << " ";
     data_to_write << "Score: " << gamePtr->GetScore() << " " << "Size: " << gamePtr->GetSize() << " ";
@@ -22,8 +22,8 @@ int main() {
   constexpr std::size_t kGridWidth{32};
   constexpr std::size_t kGridHeight{32};
 
-    const std::string MAIN_FILE = "Sessions.txt";
-    const std::string TEMP_FILE = "temp.txt";
+    const std::string MAIN_FILE = "../Session.txt";
+    const std::string TEMP_FILE = "../temp.txt";
 
     std::string user_name = "";
 
@@ -34,8 +34,10 @@ int main() {
     bool isRestored = false;
     int user_name_length = 6 + user_name.length();
     if (user_name != "" || user_name != "unauthorized"){
+        std::cout << "normal name" << std::endl;
 
-        std::ifstream read_file_stream(MAIN_FILE);
+        std::ifstream read_file_stream;
+        read_file_stream.open(MAIN_FILE);
         if (read_file_stream.is_open()){
             std::cout << "file for search starter value is open" << std::endl;
             std::string li;
@@ -50,7 +52,11 @@ int main() {
 
             }
             read_file_stream.close();
+        } else
+        {
+            std::cout << "problem with open start files" << std::endl;
         }
+        
 
     }
 
@@ -61,13 +67,17 @@ int main() {
     if (isRestored){
         std::cout << "is restored" << std::endl;
         levelInt = std::stoi(levelStr);
+        std::cout << "level int " << levelInt<< std::endl;
         scoreInt = std::stoi(scoreStr);
+        std::cout << "score " << scoreStr << std::endl;
         lifeInt = std::stoi(lifeStr);
+        std::cout << "life " << lifeInt<< std::endl;
      } 
        Game game(kGridWidth, kGridHeight, levelInt, scoreInt, lifeInt);
    
   game.Run(controller, renderer, kMsPerFrame);
   //saving data for file
+  if(game.GetLifes() >= 1){
   std::fstream data_to_write;
   data_to_write.open(MAIN_FILE, std::ios::out | std::ios::in);
     if (!data_to_write.is_open()){
@@ -98,6 +108,7 @@ int main() {
 
     }
 
+  }
   std::cout << "Game has terminated successfully!\n";
   std::cout << "Level: " << game.GetLevel() << "\n";
   std::cout << "Score: " << game.GetScore() << "\n";

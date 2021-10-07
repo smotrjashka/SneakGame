@@ -14,16 +14,18 @@ Game::Game(std::size_t grid_width, std::size_t grid_height, int level, int score
     : snake(grid_width, grid_height), 
         engine(dev()),
         random_w(0, static_cast<int>(grid_width - 1)),
-        random_h(0, static_cast<int>(grid_height - 1)){
-    SetLevel(level);
-    SetScore(score);
-    SetLifes(life);
+        random_h(0, static_cast<int>(grid_height - 1))
+        {
+          SetLevel(level);
+          SetScore(score);
+          SetLifes(life);
     PlaceFood();
 }
 
 
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
+  std::cout << "starter value for run " << level << " sc " << score << "li " << life << std::endl;
   Uint32 title_timestamp = SDL_GetTicks();
   Uint32 frame_start;
   Uint32 frame_end;
@@ -115,7 +117,7 @@ void Game::SetScore(int score){
       this->score = score;
     }
   }
-  
+
   void Game::SetLevel(int level){
     if (level > 0)
     {
@@ -126,7 +128,7 @@ void Game::SetScore(int score){
   void Game::SetLifes(int lifes){
     if (lifes > 0 && lifes <= 3)
     {
-    this->life = lifes;
+    life = lifes;
     }
     
   }
