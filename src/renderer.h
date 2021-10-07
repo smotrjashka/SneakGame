@@ -14,6 +14,7 @@ class Renderer {
 
   void Render(Snake const snake, SDL_Point const &food, Obstacle const obstacle);
   void UpdateWindowTitle(int score, int fps, int level, int life);
+  std::vector<int> ColorChoose(Obstacle::ObstacleType obstacle_type);
 
  private:
   SDL_Window *sdl_window;

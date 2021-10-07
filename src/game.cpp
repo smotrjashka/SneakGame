@@ -41,7 +41,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake);
     Update();
-    renderer.Render(snake, food);
+    renderer.Render(snake, food, obstacle);
 
     frame_end = SDL_GetTicks();
 
@@ -88,7 +88,8 @@ void Game::PlaceObstacle() {
         y = random_h(engine);
 
         if (!snake.SnakeCell(x, y) && food.x != x && food.y != y) {
-            Obstacle::Obstacle(x, y);
+            SDL_Point false_food_point{static_cast<int>(x), static_cast<int>(y)};
+            obstacle.obstacle_points.push_back(false_food_point);
             return;
         }
 

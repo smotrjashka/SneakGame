@@ -90,26 +90,26 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, Obstacle const o
   SDL_RenderPresent(sdl_renderer);
 }
 
-std::vector<int> ColorChoose(Obstacle::ObstacleType obstacle_type){
+std::vector<int> Renderer::ColorChoose(Obstacle::ObstacleType obstacle_type){
     std::cout << "start color choose" << std::endl;
     std::vector<int> rgb;
     switch (obstacle_type) {
-        case FalseFood:
+        case Obstacle::ObstacleType::FalseFood:
             rgb.push_back(229);
             rgb.push_back(20);
             rgb.push_back(0);
             break;
-        case Barrier:
+        case Obstacle::ObstacleType::Barrier:
             rgb.push_back(162);
             rgb.push_back(0);
             rgb.push_back(37);
             break;
-        case Rock:
+        case Obstacle::ObstacleType::Rock:
             rgb.push_back(226);
             rgb.push_back(0);
             rgb.push_back(115);
             break;
-        case Wall:
+        case Obstacle::ObstacleType::Wall:
         default:                //just in case for future
             rgb.push_back(250);
             rgb.push_back(104);
