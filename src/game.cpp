@@ -14,8 +14,10 @@ Game::Game(std::size_t grid_width, std::size_t grid_height, int level, int score
     : snake(grid_width, grid_height), 
         engine(dev()),
         random_w(0, static_cast<int>(grid_width - 1)),
-        random_h(0, static_cast<int>(grid_height - 1)),
-        SetLevel(level), SetScore(score), SetLifes(life){
+        random_h(0, static_cast<int>(grid_height - 1)){
+    SetLevel(level);
+    SetScore(score);
+    SetLifes(life);
     PlaceFood();
 }
 
@@ -121,10 +123,10 @@ void Game::SetScore(int score){
     }
     
   }
-  void Game:: SetLifes(int lifes){
+  void Game::SetLifes(int lifes){
     if (lifes > 0 && lifes <= 3)
     {
-    life = lifes;
+    this->life = lifes;
     }
     
   }
