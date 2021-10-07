@@ -42,6 +42,7 @@ class Game {
 
   void PlaceFood();
   void PlaceObstacle();
+  void RemovePrevObstacle();
   void Update();
 };
 

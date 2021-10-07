@@ -99,6 +99,10 @@ void Game::PlaceObstacle() {
 
 }
 
+void Game::RemovePrevObstacle(){
+  obstacle.obstacle_points.clear();
+}
+
 void Game::Update() {
   std::cout << "updtae start" << std::endl;
   if (!snake.alive) return;
@@ -122,10 +126,12 @@ std::cout << "check if food" << std::endl;
           snake.speed += 0.02;
           life = 3;
           PlaceFood();
+          PlaceObstacle();
           // size of snake = score + head
           snake.EraseBody(score + 1);
       } else {
           PlaceFood();
+          PlaceObstacle();
           // Grow snake and increase speed.
           snake.GrowBody();
       }
