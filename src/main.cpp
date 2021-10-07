@@ -15,7 +15,7 @@ std::string save_data_to_file(Game *gamePtr, std::string user, std::fstream& dat
 }
 
 int main() {
-  constexpr std::size_t kFramesPerSecond{30};   //I change started speed to lower
+  constexpr std::size_t kFramesPerSecond{45};   //I change started speed to lower
   constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
   constexpr std::size_t kScreenWidth{640};
   constexpr std::size_t kScreenHeight{640};
@@ -74,8 +74,7 @@ int main() {
         std::cout << "problems with write result to file " << std::endl;
     } else {
         std::string line;
-        std::fstream temp_file;
-        temp_file.open(TEMP_FILE, std::ios::out | std::ios::in);
+        std::ofstream temp_file(TEMP_FILE.c_str());
      //   std::string user_name = game.GetUserName();
         bool isPresent = false;
         Game* ptrGame = &game;
