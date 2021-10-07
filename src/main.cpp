@@ -89,8 +89,7 @@ int main() {
         bool isPresent = false;
         Game* ptrGame = &game;
         while (std::getline(data_to_write, line)){
-            std::cout << "substr: " << line.substr(0, user_name_length) << std::endl;
-            if (line.substr(0, user_name_length) == "User: "+user_name){
+          if (line.substr(0, user_name_length) == "User: "+user_name){
                 save_data_to_file(ptrGame, user_name, temp_file);
                 isPresent = true;
             } else {
@@ -101,10 +100,13 @@ int main() {
             save_data_to_file(ptrGame, user_name, temp_file);
         }
 
+        std::cout << "close" << std::endl;
         data_to_write.close();
         temp_file.close();
         remove(MAIN_FILE.c_str());
         rename(TEMP_FILE.c_str(), MAIN_FILE.c_str());
+
+        std::cout << "after rename" << std::endl;
 
     }
 

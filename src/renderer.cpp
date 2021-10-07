@@ -39,7 +39,6 @@ Renderer::~Renderer() {
 }
 
 void Renderer::Render(Snake const snake, SDL_Point const &food, Obstacle const obstacle) {
-  std::cout << "start render" << std::endl;
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -52,7 +51,6 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, Obstacle const o
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
-std::cout << "betwean" << std::endl;
   // Render food
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
   block.x = food.x * block.w;
@@ -61,7 +59,6 @@ std::cout << "betwean" << std::endl;
 
   //Render Obstacle
 
-    std::cout << "render obstacle" << std::endl;
     std::vector<int> rgb = ColorChoose(obstacle.obstacle_type);
 
     SDL_SetRenderDrawColor(sdl_renderer, rgb[0], rgb[1], rgb[2], 255);
@@ -71,7 +68,6 @@ std::cout << "betwean" << std::endl;
         SDL_RenderFillRect(sdl_renderer, &obst_block);
     }
 
-    std::cout << "after render obstacle" << std::endl;
 
   // Render snake's body
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -96,7 +92,6 @@ std::cout << "betwean" << std::endl;
 }
 
 std::vector<int> Renderer::ColorChoose(Obstacle::ObstacleType obstacle_type){
-    std::cout << "start color choose" << std::endl;
     std::vector<int> rgb;
     switch (obstacle_type) {
         case Obstacle::ObstacleType::FalseFood:
@@ -121,7 +116,6 @@ std::vector<int> Renderer::ColorChoose(Obstacle::ObstacleType obstacle_type){
             rgb.push_back(0);
     }
 
-    std::cout << "finish color choose" << std::endl;
     return rgb;
 }
 

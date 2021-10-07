@@ -39,11 +39,8 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     frame_start = SDL_GetTicks();
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake);
-    std::cout << "update" << std::endl;
     Update();
-    std::cout << "render" << std::endl;
     renderer.Render(snake, food, obstacle);
-    std::cout << "after" << std::endl;
 
     frame_end = SDL_GetTicks();
 
@@ -104,18 +101,15 @@ void Game::RemovePrevObstacle(){
 }
 
 void Game::Update() {
-  std::cout << "updtae start" << std::endl;
   if (!snake.alive) return;
-  std::cout << "snake alive" << std::endl;
 
   snake.Update();
-std::cout << "snake updated" << std::endl;
   int new_x = static_cast<int>(snake.head_x);
   int new_y = static_cast<int>(snake.head_y);
-std::cout << "check if food" << std::endl;
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
+    RemovePrevObstacle();
     //I added second condition check just in case that some other changes in future will drastically
     //impact on score number and for avoid future bugs. And, in general, I prefer that programming model when we
     // didnt trust code from another class
@@ -136,14 +130,14 @@ std::cout << "check if food" << std::endl;
           snake.GrowBody();
       }
   } else {
-    std::cout << "else" << std::endl;
       //checking for obstacle if it is not food
       //TODO vector check
       ///for now I only have a false food generator
       std::cout << obstacle.obstacle_points.size() << std::endl;
       if (obstacle.obstacle_points.size()>0
        && obstacle.obstacle_points[0].x == new_x && obstacle.obstacle_points[0].y == new_y){
-          level--;
+          RemovePrevObstacle();
+          life--;
           /// its lifes == 0, but just in case
           if (life < 1){
               snake.alive = false;
@@ -151,8 +145,8 @@ std::cout << "check if food" << std::endl;
               score = 0;
               level = 1;
           }
+      PlaceObstacle();
       }
-      std::cout << "else finished" << std::endl;
   }
 }
 
