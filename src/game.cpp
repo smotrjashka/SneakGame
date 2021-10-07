@@ -11,7 +11,7 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
 }
 
 Game::Game(std::size_t grid_width, std::size_t grid_height, int level, int score, int life)
-    : snake(grid_width, grid_height), 
+    : snake(grid_width, grid_height, score, level),
         engine(dev()),
         random_w(0, static_cast<int>(grid_width - 1)),
         random_h(0, static_cast<int>(grid_height - 1))
