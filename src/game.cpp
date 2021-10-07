@@ -98,10 +98,13 @@ void Game::Update() {
           level++;
           snake.speed += 0.02;
           life = 3;
+          PlaceFood();
+          snake.EraseBody();
+      } else {
+          PlaceFood();
+          // Grow snake and increase speed.
+          snake.GrowBody();
       }
-    PlaceFood();
-    // Grow snake and increase speed.
-    snake.GrowBody();
   }
 }
 

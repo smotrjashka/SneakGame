@@ -15,6 +15,7 @@ class Snake {
   void Update();
 
   void GrowBody();
+  void EraseBody();
   bool SnakeCell(int x, int y);
 
   Direction direction = Direction::kUp;
@@ -31,6 +32,7 @@ class Snake {
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
 
   bool growing{false};
+  bool erase_body{false};
   int grid_width;
   int grid_height;
 };
