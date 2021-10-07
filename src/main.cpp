@@ -4,12 +4,14 @@
 #include "renderer.h"
 #include "login.h"
 #include <fstream>
+#include <sstream>
+#include <stdio.h>
 
-std::string save_data_to_file(Game game, std::fstream data_to_write){
+std::string save_data_to_file(Game *gamePtr, std::string user, std::fstream& data_to_write){
     /// places between words needed for simplify read procedure
-    data_to_write << "User: " << game.GetUserName() << " " << "Level: " << game.GetLevel() << " ";
-    data_to_write << "Score: " << game.GetScore() << " " << "Size: " << game.GetSize() << " ";
-    data_to_write << "Lifes: " << game.GetLifes() << "\n";
+    data_to_write << "User: " << user << " " << "Level: " << gamePtr->GetLevel() << " ";
+    data_to_write << "Score: " << gamePtr->GetScore() << " " << "Size: " << gamePtr->GetSize() << " ";
+    data_to_write << "Lifes: " << gamePtr->GetLifes() << "\n";
 }
 
 int main() {
@@ -25,18 +27,19 @@ int main() {
 
     std::string user_name = "";
 
-    Login login(kScreenWidth, kScreenHeight, &user_name);
+    Login login(user_name);
 
 
     std::string word, levelStr, scoreStr, sizeStr, lifeStr;
     bool isRestored = false;
+    int user_name_length = 6 + user_name.length();
     if (user_name != "" || user_name != "unauthorized"){
 
-        std::ofstream read_file_stream(MAIN_FILE);
+        std::ifstream read_file_stream(MAIN_FILE);
         if (read_file_stream.is_open()){
             std::cout << "file for search starter value is open" << std::endl;
             std::string li;
-            while (std::getline(data_to_write, li)){
+            while (std::getline(read_file_stream, li)){
                 std::cout << "substr: " << li.substr(0, user_name_length) << std::endl;
                 if (li.substr(0, user_name_length) == "User: "+user_name)
                 {
@@ -53,52 +56,51 @@ int main() {
 
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
-  Game game;
+
+        int levelInt, scoreInt, lifeInt;
     if (isRestored){
         std::cout << "is restored" << std::endl;
-        int levelInt, scoreInt, lifeInt;
         levelInt = std::stoi(levelStr);
         scoreInt = std::stoi(scoreStr);
-        lifeInt = std::stoi();
-        game = new Game(kGridWidth, kGridHeight, levelInt, scoreInt, lifeInt);
-    } else {
-       game = new Game(kGridWidth, kGridHeight);
-    }
+        lifeInt = std::stoi(lifeStr);
+     } 
+       Game game(kGridWidth, kGridHeight, levelInt, scoreInt, lifeInt);
+   
   game.Run(controller, renderer, kMsPerFrame);
   //saving data for file
   std::fstream data_to_write;
   data_to_write.open(MAIN_FILE, std::ios::out | std::ios::in);
     if (!data_to_write.is_open()){
-        std::count << "problems with write result to file " << std::endl;
+        std::cout << "problems with write result to file " << std::endl;
     } else {
         std::string line;
         std::fstream temp_file;
         temp_file.open(TEMP_FILE, std::ios::out | std::ios::in);
      //   std::string user_name = game.GetUserName();
-        int user_name_length = 6 + user_name.length();
         bool isPresent = false;
+        Game* ptrGame = &game;
         while (std::getline(data_to_write, line)){
             std::cout << "substr: " << line.substr(0, user_name_length) << std::endl;
             if (line.substr(0, user_name_length) == "User: "+user_name){
-                save_data_to_file(game, temp_file);
+                save_data_to_file(ptrGame, user_name, temp_file);
                 isPresent = true;
             } else {
                 temp_file << line << "\n";
             }
         }
         if (!isPresent){
-            save_data_to_file(game, temp_file);
+            save_data_to_file(ptrGame, user_name, temp_file);
         }
 
         data_to_write.close();
         temp_file.close();
-        remove(MAIN_FILE);
-        rename(TEMP_FILE, MAIN_FILE);
+        remove(MAIN_FILE.c_str());
+        rename(TEMP_FILE.c_str(), MAIN_FILE.c_str());
 
     }
 
   std::cout << "Game has terminated successfully!\n";
-  std::cout << "Level: " << game.GetLevel() << "\n"
+  std::cout << "Level: " << game.GetLevel() << "\n";
   std::cout << "Score: " << game.GetScore() << "\n";
   std::cout << "Size: " << game.GetSize() << "\n";
   std::cout << "Lifes: " << game.GetLifes() << std::endl;

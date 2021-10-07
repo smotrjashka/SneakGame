@@ -18,7 +18,10 @@ class Game {
   int GetSize() const;
   int GetLevel() const;
   int GetLifes() const;
-  string GetUserName() const;
+  void SetScore(int score);
+  void SetLevel(int level);
+  void SetLifes(int lifes);
+  std::string GetUserName() const;
 
  private:
   Snake snake;

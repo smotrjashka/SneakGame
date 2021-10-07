@@ -2,11 +2,10 @@
 #define SDL2TEST_LOGIN_H
 
 #include <string>
-#include "SDL.h"
 
 class Login{
 public:
-    Login(const std::size_t screen_width, const std::size_t screen_height, std::string& user);
+    Login(std::string &user);
     ~Login();
 
 private:
