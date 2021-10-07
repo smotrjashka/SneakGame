@@ -79,7 +79,7 @@ void Snake::UpdateBody(SDL_Point &current_head_cell, SDL_Point &prev_head_cell) 
       } else {
           erase_body = false;
           //left only head
-          while (body.size() > size){
+          while (body.size() > (size - 1)){
               body.erase(body.begin());
           }
       }

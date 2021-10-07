@@ -33,6 +33,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   int frame_count = 0;
   bool running = true;
 
+  //proper title for first second of the game
   renderer.UpdateWindowTitle(score, 0, level, life);
   while (running) {
     frame_start = SDL_GetTicks();
@@ -96,6 +97,7 @@ void Game::Update() {
     // didnt trust code from another class
       if ((score % 5 == 0) && (score != 0)){
           score = score/5;
+          std::cout << "new score after update " << score << sdl::endl;
           level++;
           snake.speed += 0.02;
           life = 3;
