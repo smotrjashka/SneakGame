@@ -8,10 +8,10 @@ The Capstone Project gives us a chance to integrate what you've learned througho
 
 ## Rules and name/game story
 
-At the begining I made a mistake in the word "snake" and wrote "snaek". But after that I think "Hm, Why not?"
-And remane that to the "sneak" wich means "to go somewhere secretly and quietly". This have something with animals hunt process.
+At the beginning I made a mistake in the word "snake" and wrote "sneak". But after that I think "Hm, Why not?"
+And remane that to the "sneak" which means "to go somewhere secretly and quietly". This has something with animals hunt process.
 
-At first, I added the levels feature. For starter vertion, I constract next levels model:
+At first, I added the levels feature. For starter version, I constract next levels model:
 
 1. Each level will have maximum "snake" length - "scope" - 5 times n, where n is the level number
    1 level  -  5
@@ -22,12 +22,12 @@ At first, I added the levels feature. For starter vertion, I constract next leve
 
 May be in future I will make more complex level idea
 
-Than I changed the speed increasing. Sincerelly, its a hight speed for scope 15, for example. And I think little bit more and start to change speed only for new level. For me, its good idea))
+Then I changed the speed increasing. Sincerely, it's a high speed for scope 15, for example. And I think a little bit more and start to change speed only for the new level. For me, it's a good idea))
 
-After that I saw part of code where we place food, particulary the coordinat check! It potential bug. We place the food and only after that we grow the body. But check contains only body, not a new + 1 squear. Or if we imagine that in our model during food place we go ahead, than we need to avoid the next squaer for "automatice eating" food. Thats why I made a decision to expand the prohibiden area for new food.
+After that I saw part of the code where we place food, particularly the coordinate check! I't potential bug. We place the food and only after that we grow the body. But check contains only body, not a new + 1 square. Or if we imagine that in our model during food place we go ahead, than we need to avoid the next squaer for "automatic eating" food. That's why I made a decision to expand the prohibiden area for new food.
 
-And I added the lifes. The user will have 3 lifes. Each new level lifes will be "zeroed" to 3. Game is over when no lifes left. If we will restore the game, we restore lifes count too. Every colision take 1 life. May be in future it will be more complex concept of lifes.
-Pay attention, that every colision with obstacle take 1 life, but in snake "eat" herself, she die emidiatlly!!)) 
+And I added the lifes. The user will have 3 lives. Each new level lifes will be "zeroed" to 3. Game is over when no lives left. If we will restore the game, we restore lives count too. Every colision take 1 life. May be in future it will be a more complex concept of lifes.
+Pay attention, that every collision with obstacle take 1 life, but in snake "eat" herself, she died immediatly!!)) 
 
 ## Concepts covered
 
