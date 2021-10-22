@@ -4,7 +4,7 @@ This is my implementetion repo for the Capstone project in the [Udacity C++ Nano
 
 <img src="snake_game.gif"/>
 
-The Capstone Project gives us a chance to integrate what you've learned throughout this program. 
+The Capstone Project gives us a chance to integrate what we've learned throughout this program. 
 
 ## Rules and name/game story
 
@@ -31,11 +31,11 @@ Pay attention, that every collision with obstacle take 1 life, but in snake "eat
 
 ## Concepts covered
 
-Hear I explane which concepts I covered by my code changes and in which way.
+Here I explain which concepts I covered by my code changes and in which way.
 
 * The project uses Object Oriented Programming techniques: the project code is organized into classes with class attributes to hold the data, and class methods to perform tasks.
   
-  I created class Obstacle for all obstacles and their functinality.
+  I created class Obstacle for all obstacles and their functionality.
   
 * The project reads data from a file and process the data, or the program writes data to a file.
 
