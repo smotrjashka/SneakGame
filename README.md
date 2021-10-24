@@ -2,7 +2,7 @@
 
 This is my implementetion repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
-<img src="snake_game.gif"/>
+<img src=""/>
 
 The Capstone Project gives us a chance to integrate what we've learned throughout this program. 
 
@@ -39,17 +39,17 @@ Here I explain which concepts I covered by my code changes and in which way.
   
 * The project reads data from a file and process the data, or the program writes data to a file.
 
-  After stop the game, if lifes left, we will safe data to the file, and for next start IF user prefer to continue game, we will restor info like level, score and lifes.
+  After stopping the game, if lifes left, we will save data to the file, and for next start IF user prefer to continue the game, we will restore info like level, score and lifes.
 
 * The project accepts user input and processes the input.
    
-  In the begining of the game, we ask user to wrote the nikename. Now I use this for have data from previously described file. But maybe in future I will safe best resalt and     make some rating or something like.
+  At the beginning of the game, we ask the user to write the nickname. Now I use this for have data from previously described file. But maybe in future I will safe best results and     make some rating or something like.
   
-  Normally, in real life for saving data I use (like everyone) DB, but for porpouse of this course I make choise to simplify the idea of data saving to match some concepts.
+  Normally, in real life for saving data I use (like everyone) DB, but for purposes of this course I make choosing to simplify the idea of data saving to match some concepts.
   
 * The project code is clearly organized into functions.
   
-  I added function save_data_to_file to main.cpp for prevent repetitive code. We use in case if found the data for this specifice user and if not found them we write new data     using this function. And also other function in game class etc.
+  I added function save_data_to_file to main.cpp for preventing repetitive code. We use in case if found the data for this specific user and if not found them, we write new data using this function. And also another function in game class etc.
   
 * Overloaded functions allow the same function to operate on different parameters: One function is overloaded with different signatures for the same function name.
 
@@ -95,18 +95,3 @@ I thinck, thats enaught))
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./SnakeGame`.
-
-
-## CC Attribution-ShareAlike 4.0 International
-
-
-Shield: [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
-
-This work is licensed under a
-[Creative Commons Attribution-ShareAlike 4.0 International License][cc-by-sa].
-
-[![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
-
-[cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
-[cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
-[cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
