@@ -45,7 +45,7 @@ Here I explain which concepts I covered by my code changes and in which way.
    
   At the beginning of the game, we ask the user to write the nickname. Now I use this for have data from previously described file. But maybe in future I will safe best results and     make some rating or something like.
   
-  Normally, in real life for saving data I use (like everyone) DB, but for purposes of this course I make choosing to simplify the idea of data saving to match some concepts.
+  Normally, in real life saving data I use (like everyone) DB, but for purposes of this course I make choosing to simplify the idea of data saving to match some concepts.
   
 * The project code is clearly organized into functions.
   
@@ -69,10 +69,10 @@ Here I explain which concepts I covered by my code changes and in which way.
   
 * The project makes use of references in function declarations.
 
-  I`m not sure about at list two, but 1 I have for certain... But probably two... Lets see)
+  I'm not sure about at list two, but 1 I have for certain... But probably two... Lets see)
   
 
-I thinck, thats enaught))
+I think, that's enaught))
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
