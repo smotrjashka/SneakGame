@@ -53,7 +53,7 @@ Here I explain which concepts I covered by my code changes and in which way.
   
 * Overloaded functions allow the same function to operate on different parameters: One function is overloaded with different signatures for the same function name.
 
- I created some overloaded function for different parameters, you can find them)
+  I created some overloaded function for different parameters, you can find them)
  
 * Class constructors utilize member initialization lists.
 
