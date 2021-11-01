@@ -1,10 +1,8 @@
-# CPPND: Capstone Sneake Game Implementation
+# Sneak Game
 
 This is my implementetion repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
 <img src=""/>
-
-The Capstone Project gives us a chance to integrate what we've learned throughout this program. 
 
 ## Rules and name/game story
 
@@ -72,7 +70,8 @@ Here I explain which concepts I covered by my code changes and in which way.
   I'm not sure about at list two, but 1 I have for certain... But probably two... Lets see)
   
 
-I think, that's enaught))
+I think, that's enaught)) 
+Or, may be not ...))))
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
