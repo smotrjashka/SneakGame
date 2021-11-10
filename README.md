@@ -4,7 +4,7 @@ This is my implementetion repo for the Capstone project in the [Udacity C++ Nano
 
 All rights reserved
 
-<img src=""/>
+<img src="sneak1.jpg" style="max-width:30%;"/>
 
 ## Rules and name/game story
 
